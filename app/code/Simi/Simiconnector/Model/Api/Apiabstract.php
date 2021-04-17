@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright © 2016 Simi. All rights reserved.
+ * Copyright © 2016 Simi. All rights reserved. Test Commit
  */
 
 namespace Simi\Simiconnector\Model\Api;
