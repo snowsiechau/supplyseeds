@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Customer\Api\Data\AddressInterface">
+        <attribute code="area" type="string" />
+        <attribute code="block" type="string" />
+        <attribute code="avenue" type="string" />
+        <attribute code="building_no" type="string" />
+        <attribute code="floor" type="string" />
+        <attribute code="apartment" type="string" />
+        <attribute code="delivery_instruction" type="string" />
+        <attribute code="location_name" type="string" />
+    </extension_attributes>
+    <extension_attributes for="Magento\Quote\Api\Data\AddressInterface">
+        <attribute code="area" type="string" />
+        <attribute code="block" type="string" />
+        <attribute code="avenue" type="string" />
+        <attribute code="building_no" type="string" />
+        <attribute code="floor" type="string" />
+        <attribute code="apartment" type="string" />
+        <attribute code="delivery_instruction" type="string" />
+        <attribute code="location_name" type="string" />
+    </extension_attributes>
+    <extension_attributes for="Magento\Checkout\Api\Data\ShippingInformationInterface">
+        <attribute code="area" type="string" />
+        <attribute code="block" type="string" />
+        <attribute code="avenue" type="string" />
+        <attribute code="building_no" type="string" />
+        <attribute code="floor" type="string" />
+        <attribute code="apartment" type="string" />
+        <attribute code="delivery_instruction" type="string" />
+        <attribute code="location_name" type="string" />
+    </extension_attributes>
+</config>

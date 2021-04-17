@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="sales_order_columns">
+         <column name="billing_address" class="Simi\Simicustomize\Ui\Component\Listing\Column\Address">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Billing Address</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="shipping_address" class="Magento\Sales\Ui\Component\Listing\Column\Address">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Shipping Address</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="telephone">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Phone Number</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>
+

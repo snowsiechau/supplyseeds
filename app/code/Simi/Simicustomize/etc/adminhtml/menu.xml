@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Simi_Simicustomize::ordertoday" title="Order Today" module="Simi_Simicustomize" sortOrder="41"
+                parent="Simi_Simiconnector::simiconnector_settings" resource="Simi_Simicustomize::manage"
+                action="simicustomize/ordertoday"/>
+    </menu>
+</config>

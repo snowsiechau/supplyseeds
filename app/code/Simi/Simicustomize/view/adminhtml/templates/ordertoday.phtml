@@ -1,0 +1,481 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var Simi\Simicustomize\Block\Adminhtml\Ordertoday $block
+ */
+
+// @codingStandardsIgnoreFile
+
+$orders = $block->getOrders();
+
+$newOrders = $block->getNewOrders();
+$processingOrders = $block->getProcessingOrder();
+$pendingOrders = $block->getPendingOrder();
+$completeOrders = $block->getCompleteOrder();
+
+?>
+
+<div style="display: flex; align-items: center;">
+    <div style="width: 20px; height: 20px; border-radius: 50%; background-color: orange; margin-right: 10px;"></div>
+    <span style="font-size: 18px; color: black;font-weight: 600;">New Orders</span>
+</div>
+<div class="admin__data-grid-wrap" data-role="grid-wrapper">
+    <table class="data-grid data-grid-draggable" data-role="grid">
+        <thead>
+            <tr>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">ID</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable _descend">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Purchase Date</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Bill-to Name</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Shipping Address</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Phone Number</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Grand Total (Base)</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Grand Total (Purchased)</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Status</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Action</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th">
+                    <span class="data-grid-cell-content" data-bind="i18n: label"></span>
+                </th>
+                <!-- /ko -->
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($newOrders as $order) : ?>
+                <tr class="data-row" data-repeat-index="0">
+                    <td style="background-color: #fff1e9;">
+                        <div class="data-grid-cell-content"><?= $block->parseIncrementId($order) ?></div>
+                    </td>
+                    <td style="background-color: #fff1e9;">
+                        <div class="data-grid-cell-content"><?= $block->parseCreateAt($order) ?></div>
+                    </td>
+                    <td style="background-color: #fff1e9;">
+                        <div class="data-grid-cell-content"><?= $block->parseBillingName($order) ?></div>
+                    </td>
+                    <td style="background-color: #fff1e9;">
+                        <div class="data-grid-cell-content"><?= $block->parseShippingAddess($order) ?></div>
+                    </td>
+                    <td style="background-color: #fff1e9;">
+                        <div class="data-grid-cell-content"><?= $block->parsePhoneNumber($order) ?></div>
+                    </td>
+                    <td style="background-color: #fff1e9;">
+                        <div class="data-grid-cell-content"><?= $block->parseBaseGrandTotal($order) ?></div>
+                    </td>
+                    <td style="background-color: #fff1e9;">
+                        <div class="data-grid-cell-content"><?= $block->parseGrandTotal($order) ?></div>
+                    </td>
+                    <td style="background-color: #fff1e9;">
+                        <div class="data-grid-cell-content"><?= $block->parseStatus($order) ?></div>
+                    </td>
+                    <td class="data-grid-actions-cell" style="background-color: #fff1e9;"><a class="action-menu-item" data-repeat-index="0" target="_self" href=<?= $block->getRowUrl($order) ?>>View</a>
+                    </td>
+                    <td class="data-grid-actions-cell" style="background-color: #fff1e9;"><a class="action-menu-item" data-repeat-index="0" target="_self" onclick="loadDoc('<?= $block->getConfirmAndPrintUrl($order) ?>', '<?= $block->getInvoiceUrl($order) ?>')">Confirm & Print</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+
+        </tbody>
+    </table>
+</div>
+
+<!------- Processing Orders ---------->
+
+<div style="display: flex; align-items: center;">
+    <div style="width: 20px; height: 20px; border-radius: 50%; background-color: green; margin-right: 10px;"></div>
+    <span style="font-size: 18px; color: black;font-weight: 600;">Processing Orders</span>
+</div>
+<div class="admin__data-grid-wrap" data-role="grid-wrapper">
+    <table class="data-grid data-grid-draggable" data-role="grid">
+        <thead>
+            <tr>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">ID</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable _descend">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Purchase Date</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Bill-to Name</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Shipping Address</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Phone Number</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Grand Total (Base)</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Grand Total (Purchased)</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Status</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Action</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th">
+                    <span class="data-grid-cell-content" data-bind="i18n: label"></span>
+                </th>
+                <!-- /ko -->
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($processingOrders as $order) : ?>
+                <tr class="data-row" data-repeat-index="0">
+                    <td style="background-color: #efffe9;">
+                        <div class="data-grid-cell-content"><?= $block->parseIncrementId($order) ?></div>
+                    </td>
+                    <td style="background-color: #efffe9;">
+                        <div class="data-grid-cell-content"><?= $block->parseCreateAt($order) ?></div>
+                    </td>
+                    <td style="background-color: #efffe9;">
+                        <div class="data-grid-cell-content"><?= $block->parseBillingName($order) ?></div>
+                    </td>
+                    <td style="background-color: #efffe9;">
+                        <div class="data-grid-cell-content"><?= $block->parseShippingAddess($order) ?></div>
+                    </td>
+                    <td style="background-color: #efffe9;">
+                        <div class="data-grid-cell-content"><?= $block->parsePhoneNumber($order) ?></div>
+                    </td>
+                    <td style="background-color: #efffe9;">
+                        <div class="data-grid-cell-content"><?= $block->parseBaseGrandTotal($order) ?></div>
+                    </td>
+                    <td style="background-color: #efffe9;">
+                        <div class="data-grid-cell-content"><?= $block->parseGrandTotal($order) ?></div>
+                    </td>
+                    <td style="background-color: #efffe9;">
+                        <div class="data-grid-cell-content"><?= $block->parseStatus($order) ?></div>
+                    </td>
+                    <td class="data-grid-actions-cell" style="background-color: #efffe9;">
+                        <a class="action-menu-item" data-repeat-index="0" target="_self" href=<?= $block->getRowUrl($order) ?>>View</a>
+                    </td>
+                    <td class="data-grid-actions-cell" style="background-color: #efffe9;">
+                        <a class="action-menu-item" data-repeat-index="0" target="_self" href=<?= $block->getShipUrl($order) ?>>Ship</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+
+        </tbody>
+    </table>
+</div>
+
+<!------- Pending Orders ---------->
+
+<div style="display: flex; align-items: center;">
+    <div style="width: 20px; height: 20px; border-radius: 50%; background-color: gray; margin-right: 10px;"></div>
+    <span style="font-size: 18px; color: black;font-weight: 600;">Pending & Failed</span>
+</div>
+<div class="admin__data-grid-wrap" data-role="grid-wrapper">
+    <table class="data-grid data-grid-draggable" data-role="grid">
+        <thead>
+            <tr>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">ID</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable _descend">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Purchase Date</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Bill-to Name</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Shipping Address</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Phone Number</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Grand Total (Base)</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Grand Total (Purchased)</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Status</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Action</span>
+                </th>
+                <!-- /ko -->
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($pendingOrders as $order) : ?>
+                <tr class="data-row" data-repeat-index="0">
+                    <td style="background-color: #e7e7e7;">
+                        <div class="data-grid-cell-content"><?= $block->parseIncrementId($order) ?></div>
+                    </td>
+                    <td style="background-color: #e7e7e7;">
+                        <div class="data-grid-cell-content"><?= $block->parseCreateAt($order) ?></div>
+                    </td>
+                    <td style="background-color: #e7e7e7;">
+                        <div class="data-grid-cell-content"><?= $block->parseBillingName($order) ?></div>
+                    </td>
+                    <td style="background-color: #e7e7e7;">
+                        <div class="data-grid-cell-content"><?= $block->parseShippingAddess($order) ?></div>
+                    </td>
+                    <td style="background-color: #e7e7e7;">
+                        <div class="data-grid-cell-content"><?= $block->parsePhoneNumber($order) ?></div>
+                    </td>
+                    <td style="background-color: #e7e7e7;">
+                        <div class="data-grid-cell-content"><?= $block->parseBaseGrandTotal($order) ?></div>
+                    </td>
+                    <td style="background-color: #e7e7e7;">
+                        <div class="data-grid-cell-content"><?= $block->parseGrandTotal($order) ?></div>
+                    </td>
+                    <td style="background-color: #e7e7e7;">
+                        <div class="data-grid-cell-content"><?= $block->parseStatus($order) ?></div>
+                    </td>
+                    <td class="data-grid-actions-cell" style="background-color: #e7e7e7;"><a class="action-menu-item" data-repeat-index="0" target="_self" href=<?= $block->getRowUrl($order) ?>>View</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+
+<!------- Complete Orders ---------->
+
+<div style="display: flex; align-items: center;">
+    <div style="width: 20px; height: 20px; border-radius: 50%; background-color: cyan; margin-right: 10px;"></div>
+    <span style="font-size: 18px; color: black;font-weight: 600;">Complete</span>
+</div>
+<div class="admin__data-grid-wrap" data-role="grid-wrapper">
+    <table class="data-grid data-grid-draggable" data-role="grid">
+        <thead>
+            <tr>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">ID</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable _descend">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Purchase Date</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Bill-to Name</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Shipping Address</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Phone Number</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Grand Total (Base)</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Grand Total (Purchased)</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th _sortable _draggable">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Status</span>
+                </th>
+                <!-- /ko -->
+                <!-- ko template: getHeader() -->
+                <th class="data-grid-th">
+                    <span class="data-grid-cell-content" data-bind="i18n: label">Action</span>
+                </th>
+                <!-- /ko -->
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($completeOrders as $order) : ?>
+                <tr class="data-row" data-repeat-index="0">
+                    <td style="background-color: #d6f6fb;">
+                        <div class="data-grid-cell-content"><?= $block->parseIncrementId($order) ?></div>
+                    </td>
+                    <td style="background-color: #d6f6fb;">
+                        <div class="data-grid-cell-content"><?= $block->parseCreateAt($order) ?></div>
+                    </td>
+                    <td style="background-color: #d6f6fb;">
+                        <div class="data-grid-cell-content"><?= $block->parseBillingName($order) ?></div>
+                    </td>
+                    <td style="background-color: #d6f6fb;">
+                        <div class="data-grid-cell-content"><?= $block->parseShippingAddess($order) ?></div>
+                    </td>
+                    <td style="background-color: #d6f6fb;">
+                        <div class="data-grid-cell-content"><?= $block->parsePhoneNumber($order) ?></div>
+                    </td>
+                    <td style="background-color: #d6f6fb;">
+                        <div class="data-grid-cell-content"><?= $block->parseBaseGrandTotal($order) ?></div>
+                    </td>
+                    <td style="background-color: #d6f6fb;">
+                        <div class="data-grid-cell-content"><?= $block->parseGrandTotal($order) ?></div>
+                    </td>
+                    <td style="background-color: #d6f6fb;">
+                        <div class="data-grid-cell-content"><?= $block->parseStatus($order) ?></div>
+                    </td>
+                    <td class="data-grid-actions-cell" style="background-color: #d6f6fb;"><a class="action-menu-item" data-repeat-index="0" target="_self" href=<?= $block->getRowUrl($order) ?>>View</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<div id="loader"></div>
+
+<div id="over-lap">
+</div>
+<style>
+#over-lap{
+    display: none;
+    background-color: #00000057;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 697;
+}
+#loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+  border: 5px solid #a74141;
+  border-radius: 50%;
+  border-top: 5px solid #e4beaa;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+
+    function wait(ms){
+       var start = new Date().getTime();
+       var end = start;
+       while(end < start + ms) {
+         end = new Date().getTime();
+      }
+    }
+
+    function loadDoc(url, invoiceUrl) {
+      var xhttp = new XMLHttpRequest();
+      document.getElementById("loader").style.display = 'block';
+      document.getElementById("over-lap").style.display = 'block';
+
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+         //console.log('xxxx');
+         window.location.href = invoiceUrl;
+         wait(4500);
+         document.getElementById("loader").style.display = 'none';
+        document.getElementById("over-lap").style.display = 'none';
+         window.location.reload();
+        }
+      };
+      xhttp.open("GET", url, true);
+      xhttp.send();
+    }
+</script>

@@ -1,0 +1,79 @@
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Seeds Market</title>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="http://supplyseeds.com/landingpage/dist/css/style.css">
+
+</head>
+<body class="is-boxed has-animations">
+    <div class="body-wrap">
+        <header class="site-header">
+            <div class="container">
+                <div class="site-header-inner">
+                    <div class="brand header-brand">
+                        <h1 class="hero-title mt-0">
+                            <a href="#">
+                                <img class="displayed" src="http://supplyseeds.com/landingpage/dist/images/logo.png" alt="Logo">
+                            </a>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-inner">
+                        <div class="hero-copy">
+                          <h1 class="hero-title mt-0">Delivering the wholesome of goodness</h1>
+<p class="hero-paragraph">&nbsp;</p>
+                            <div class="hero-cta">
+                                
+                              <p><a class="button button-primary" id="button-seeds-market-app"  href="#">SEEDS MARKET APP</a></p>
+                        </div>
+</div>
+                </div>
+            </section>
+
+            <p><a id="button-seeds-market-store" href="#"><img border="0" alt="W3Schools" src="http://supplyseeds.com/landingpage/dist/images/mobile_store.png"></a></p>
+
+     
+
+
+        </main>
+    </div>
+    <script type="text/javascript">
+        function getMobileOperatingSystem() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Windows Phone must come first because its UA also contains "Android"
+            if (/windows phone/i.test(userAgent)) {
+                return "Windows Phone";
+            }
+
+            if (/android/i.test(userAgent)) {
+                return "Android";
+            }
+
+            // iOS detection from: http://stackoverflow.com/a/9039885/177710
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return "iOS";
+            }
+
+            return "unknown";
+        }
+        if (getMobileOperatingSystem() == 'Android') {
+            document.getElementById("button-seeds-market-app").href="https://play.google.com/store/apps/details?id=com.simicart.supplyseeds"; 
+            document.getElementById("button-seeds-market-store").href="https://play.google.com/store/apps/details?id=com.simicart.supplyseeds"; 
+        } else {
+            document.getElementById("button-seeds-market-app").href="https://apps.apple.com/us/app/seeds-market/id1519949831";
+            document.getElementById("button-seeds-market-store").href="https://apps.apple.com/us/app/seeds-market/id1519949831";
+        }
+    </script>
+    <script src="http://supplyseeds.com/landingpage/dist/js/main.min.js"></script>
+</body>
+</html>

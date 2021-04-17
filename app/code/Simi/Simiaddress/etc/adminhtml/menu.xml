@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Simi. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Simi_Simiaddress::area" title="Area/Region/Province" module="Simi_Simiaddress" sortOrder="100" parent="Simi_Simiconnector::simiconnector_settings" action="simiaddress/area/" resource="Simi_Simiconnector::manage"/>
+    </menu>
+</config>

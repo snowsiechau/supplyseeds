@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sales_email>
+            <order>
+                <template_departm>sales_email_order_template</template_departm>
+                <shipper_template>sales_email_order_template</shipper_template>
+                <shipper_guest_template>sales_email_order_guest_template</shipper_guest_template>
+            </order>
+        </sales_email>
+    </default>
+</config>

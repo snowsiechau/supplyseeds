@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magento\Quote\Model\Quote\Address"  type="Simi\Simiaddress\Model\Quote\Address" />
+
+    <preference for="Magento\Customer\Model\Data\Address"  type="Simi\Simiaddress\Model\Customer\Data\Address" />
+
+    <preference for="Magento\Customer\Model\Address"  type="Simi\Simiaddress\Model\Customer\Address" />
+
+    <preference for="Magento\Sales\Model\Order" type="Simi\Simiaddress\Model\Sales\Order" />
+
+    <preference for="Magento\Quote\Model\ShippingAddressManagement"  type="Simi\Simiaddress\Model\Quote\ShippingAddressManagementPlugin" />
+
+    <preference for="Magento\Quote\Model\BillingAddressManagement"  type="Simi\Simiaddress\Model\Quote\BillingAddressManagementPlugin" />
+
+    <preference for="Magento\Customer\Model\Address\Mapper" type="Simi\Simiaddress\Model\Customer\Address\Mapper" />
+
+    <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Simi\Simiaddress\Model\Order\Pdf\Invoice" />
+    
+</config>
